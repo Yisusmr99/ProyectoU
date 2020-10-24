@@ -1,4 +1,4 @@
-package helpers;
+package global;
 
 public final class ENV {
     private static final ENV INSTANCE = new ENV();

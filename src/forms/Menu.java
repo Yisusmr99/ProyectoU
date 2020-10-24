@@ -23,5 +23,22 @@ public class Menu extends JFrame{
                 c.setVisible(true);
             }
         });
+        agenciasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Agencies a = new Agencies();
+                a.setLocationRelativeTo(null);
+                a.setVisible(true);
+            }
+        });
+
+        productosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreateProduct p = new CreateProduct();
+                p.setLocationRelativeTo(null);
+                p.setVisible(true);
+            }
+        });
     }
 }

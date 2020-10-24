@@ -1,4 +1,4 @@
-package helpers;
+package global;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,6 +28,15 @@ public class DatabaseConnection {
         try{
             PreparedStatement pst = dataBase.prepareStatement("SELECT * FROM " + table + " WHERE Id=?");
             pst.setInt(1,id);
+            ResultSet rs = pst.executeQuery();
+            return rs;
+        }catch(Exception e){ System.out.println(e); return null;}
+    }
+
+    public ResultSet searchOnTableWithName(String table, String name){
+        try{
+            PreparedStatement pst = dataBase.prepareStatement("SELECT * FROM " + table + " WHERE Name=?");
+            pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
             return rs;
         }catch(Exception e){ System.out.println(e); return null;}
