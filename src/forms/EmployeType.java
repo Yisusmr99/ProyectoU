@@ -7,31 +7,33 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.HashMap;
 
-public class CreateProductType extends JFrame{
-    private JTextField description;
-    private JButton agregarButton;
+public class EmployeType extends JFrame{
     private JPanel frame;
-    private JTextField idP;
-    private JButton buscarButton;
-    private JTable table1;
+    private JTextField description;
     private JLabel resultDescription;
+    private JTextField idE;
+    private JButton buscarButton;
+    private JButton agregarButton;
+    private JScrollPane table;
 
     private void loadTable(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Descripcion");
 
-        ResultSet rs = ENV.getInstance().db.selectWithTableName("ProductType");
+        ResultSet rs = ENV.getInstance().db.selectWithTableName("EmployeType");
         try{
             while (rs.next()){
                 model.addRow(new Object[]{rs.getString("Id")
                         , rs.getString("Description")});
             }
         }catch(Exception e2){ System.out.println(e2);}
+        JTable table1 = new JTable();
         table1.setModel(model);
+        table.getViewport ().add (table1);
     }
 
-    public CreateProductType(){
+    public EmployeType(){
         setBounds(0,0,500,400);
         add(frame);
         loadTable();
@@ -40,7 +42,7 @@ public class CreateProductType extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 HashMap<String, String> parameters = new HashMap<>();
                 parameters.put("Description",description.getText());
-                ENV.getInstance().db.insertWithTableName(parameters, "ProductType");
+                ENV.getInstance().db.insertWithTableName(parameters, "EmployeType");
                 description.setText("");
                 loadTable();
             }
@@ -50,7 +52,7 @@ public class CreateProductType extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String responseName = "";
-                ResultSet rs = ENV.getInstance().db.searchOnTableWithId("ProductType",Integer.parseInt(idP.getText()));
+                ResultSet rs = ENV.getInstance().db.searchOnTableWithId("EmployeType",Integer.parseInt(idE.getText()));
                 try{
                     while (rs.next()){
                         responseName = rs.getString("Description");
@@ -64,6 +66,5 @@ public class CreateProductType extends JFrame{
                 }
             }
         });
-
     }
 }

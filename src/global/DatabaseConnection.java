@@ -70,6 +70,28 @@ public class DatabaseConnection {
         }catch(Exception e){System.out.println(e);}
     }
 
+    public void updatetWithTableName(HashMap<String,String> parameters, String table, Integer id){
+        String sizeValues = "";
+        String columns = "";
+        ArrayList<String> p = new ArrayList<>();
+        for ( String key : parameters.keySet() ) {
+            columns = columns + key + ",";
+            sizeValues = sizeValues + "?,";
+            p.add(parameters.get(key));
+        }
+        sizeValues = closeString(sizeValues);
+        columns = closeString(columns);
+        try{
+            PreparedStatement pst = dataBase.prepareStatement("UPDATE " + table + " SET " + "(" + columns +") =(" + sizeValues + ")"
+                    + " WHERE Id=?"+id);
+
+            for (int i = 0; i < parameters.keySet().size(); i++) {
+                pst.setString(i + 1,p.get(i));
+            }
+            pst.executeUpdate();
+        }catch(Exception e){System.out.println(e);}
+    }
+
     private static String closeString(String str) {
         String result = null;
         if ((str != null) && (str.length() > 0)) {

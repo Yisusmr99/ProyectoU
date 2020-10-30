@@ -22,13 +22,14 @@ public class Agencies extends JFrame{
     private JTable table2;
     private JLabel resultName;
     private JLabel resultCountry;
+    private JScrollPane table;
 
     private void loadTable(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id");
-        model.addColumn("Name");
+        model.addColumn("Nombre");
         model.addColumn("Direccion");
-        model.addColumn("Country");
+        model.addColumn("Ciudad");
 
         ResultSet rs = ENV.getInstance().db.selectWithTableName("Agencies");
         try{
@@ -40,7 +41,9 @@ public class Agencies extends JFrame{
                 });
             }
         }catch(Exception e2){ System.out.println(e2);}
+        JTable table1 = new JTable();
         table1.setModel(model);
+        table.getViewport ().add (table1);
     }
 
     public Agencies(){

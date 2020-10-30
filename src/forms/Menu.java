@@ -13,12 +13,13 @@ public class Menu extends JFrame{
     private JButton agenciasButton;
 
     public Menu(){
-        setBounds(0, 0, 350, 250);
+        setTitle("Jesús Morales 9989-18-19239");
+        setBounds(0, 0, 350, 280);
         add(frame);
         tipoDeProductosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateProductType c = new CreateProductType();
+                ProductType c = new ProductType();
                 c.setLocationRelativeTo(null);
                 c.setVisible(true);
             }
@@ -31,13 +32,28 @@ public class Menu extends JFrame{
                 a.setVisible(true);
             }
         });
-
         productosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateProduct p = new CreateProduct();
+                Products p = new Products();
                 p.setLocationRelativeTo(null);
                 p.setVisible(true);
+            }
+        });
+        tipoDeEmpleadosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EmployeType em = new EmployeType();
+                em.setLocationRelativeTo(null);
+                em  .setVisible(true);
+            }
+        });
+        empleadosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Employees em = new Employees();
+                em.setLocationRelativeTo(null);
+                em  .setVisible(true);
             }
         });
     }
